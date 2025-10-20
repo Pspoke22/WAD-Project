@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - Budget Tracker</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="dashboard-container">
+    <header>
+      <h1>Budget Tracker Dashboard</h1>
+      <button id="logoutBtn" class="btn-logout">Logout</button>
+    </header>
+
+    <main>
+      <h2 id="welcome"></h2>
+      <p>Manage your budgets, transactions, and categories here.</p>
+    </main>
+  </div>
+
+  <script src="js/auth.js"></script>
+
+  <script>
+    // -------------------- SESSION CHECK --------------------
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) {
+      // Not logged in → redirect to login page
+      window.location.href = "login.html";
+    } else {
+      // Display welcome message
+      const welcomeEl = document.getElementById("welcome");
+      welcomeEl.textContent = `Welcome, ${user.name}!`;
+    }
+  </script>
+</body>
+</html>

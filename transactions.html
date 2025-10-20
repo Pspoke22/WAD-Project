@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transactions - Budget Tracker</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">💰</span>
+                    <span class="logo-text">Budget Tracker</span>
+                </div>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html">📊 Dashboard</a></li>
+                <li><a href="transactions.html" class="active">💳 Transactions</a></li>
+                <li><a href="budgets.html">🎯 Budgets</a></li>
+            </ul>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <span id="userName">User</span>
+                </div>
+                <button id="logoutBtn" class="btn-secondary btn-small">Logout</button>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <div class="page-header">
+                <h1>Transactions</h1>
+                <div class="header-actions">
+                    <div class="month-selector">
+                        <button id="prevMonth" class="btn-icon">←</button>
+                        <span id="currentMonth">January 2025</span>
+                        <button id="nextMonth" class="btn-icon">→</button>
+                    </div>
+                    <button id="exportBtn" class="btn-secondary">📥 Export CSV</button>
+                    <button id="addTransactionBtn" class="btn-primary">+ Add Transaction</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <div id="transactionsList" class="transactions-table">
+                        <p class="text-muted">Loading transactions...</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Transaction Modal -->
+    <div id="transactionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Transaction</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="transactionForm">
+                <div class="form-group">
+                    <label>Type</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="type" value="income" required>
+                            <span>Income</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="type" value="expense" checked required>
+                            <span>Expense</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category" name="category" required>
+                        <option value="">Select category...</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="amount">Amount (N$)</label>
+                    <input type="number" id="amount" name="amount" step="0.01" min="0.01" required placeholder="0.00">
+                </div>
+
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="note">Note (Optional)</label>
+                    <textarea id="note" name="note" rows="3" placeholder="Add a note..."></textarea>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" id="cancelBtn">Cancel</button>
+                    <button type="submit" class="btn-primary">Add Transaction</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/transactions.js"></script>
+</body>
+</html>
